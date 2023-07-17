@@ -26,7 +26,7 @@ function configureXinFinNode(){
 
     echo "Clone Xinfin Node"
 
-    git clone https://github.com/XinFinOrg/XinFin-Node && cd XinFin-Node/$Network
+    git clone https://github.com/XinFinOrg/XinFin-Node && cd XinFin-Node/$Network && git checkout fix-bootnode
     sed -i "s/INSTANCE_NAME=XF_MasterNode/INSTANCE_NAME=${MasterNodeName}_XF/g" .env
 
 
