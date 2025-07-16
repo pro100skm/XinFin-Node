@@ -1,7 +1,7 @@
 version: "3.4"
 
 services:
-  xinfinnetwork:
+  xinfin-network:
     image: xinfinorg/xdposchain:v2.4.2
     volumes:
       - "./xdcchain:/work/xdcchain"
