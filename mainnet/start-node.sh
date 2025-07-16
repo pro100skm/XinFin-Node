@@ -44,6 +44,7 @@ XDC \
     --networkid 50 \
     --port 30303 \
     --rpc \
+    --rpc-gascap "150000000" \
     --rpcapi db,eth,debug,net,shh,txpool,personal,web3,XDPoS \
     --rpccorsdomain "*" \
     --rpcaddr 0.0.0.0 \
