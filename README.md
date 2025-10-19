@@ -1,7 +1,6 @@
-
 ## How to Setup XinFin Masternode
 
-### Method 1:- Setup XinFin’s XDC Masternode One-click Installer ###
+### Method 1:- Setup XinFin's XDC Masternode One-click Installer ###
 
 To qualify for Masternode on XinFin Network, you need at least **10,000,000 XDC, for the long term.**
 
@@ -192,13 +191,43 @@ cd testnet
 sudo docker-compose -f docker-compose.yml down
 ```
 
+## How to setting RPC
+By default, RPC is disabled. To enable RPC, follow these steps:
+
+1. Copy `mainnet/env.example` to `mainnet/.env` (if not already created)
+2. In the `.env` file, set:
+   ```
+   ENABLE_RPC=true
+   ```
+
+### Configure RPC Parameters
+
+All RPC-related configurations are located in the `.env` file. You can modify the following parameters as needed:
+
+**RPC API Configuration**
+
+- `RPC_API`: List of RPC APIs (Default: db,eth,net,txpool,web3,XDPoS)
+- `RPC_CORS_DOMAIN`: CORS domain settings (Default: \*)
+- `RPC_ADDR`: RPC listening address (Default: 0.0.0.0)
+- `RPC_PORT`: RPC port (Default: 8545)
+- `RPC_VHOSTS`: Virtual host settings (Default: \*)
+
+**WebSocket Configuration**
+
+- `WS_API`: List of WebSocket APIs (Default: db,eth,net,txpool,web3,XDPoS)
+- `WS_ADDR`: WebSocket listening address (Default: 0.0.0.0)
+- `WS_ORIGINS`: Allowed WebSocket origins (Default: \*)
+- `WS_PORT`: WebSocket port (Default: 8546)
+
+
 ## Troubleshooting
 
 
 Public discussions on the technical issues, post articles and request for Enhancements and Technical Contributions.
 
 - [Discord](https://discord.com/invite/KZdD6pkFxp)
-- [Telegram](http://bit.do/Telegram-XinFinDev)
+- [Telegram](https://t.me/xinfintalk)
+- [X (Twitter)](https://x.com/XDC_Network_)
 - [Reddit](https://www.reddit.com/r/xinfin/)
 - [GitHub](https://github.com/XinFinorg)
-- [XinFin FAQs](https://howto.xinfin.org/general/faq/)
+- [XinFin FAQs](https://xdc.org/resources/faqs)
