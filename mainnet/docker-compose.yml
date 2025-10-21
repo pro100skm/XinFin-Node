@@ -3,6 +3,14 @@ version: "3.4"
 services:
   xinfinnetwork:
     image: xinfinorg/xdposchain:v2.4.2
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          # Выделите 4-6 ядер CPU (в зависимости от общего количества ядер)
+          cpus: '12'
+          # Выделите достаточно RAM для кеша Archive Node (например, 16GB)
+          memory: '16g'
     volumes:
       - "./xdcchain:/work/xdcchain"
       - "./genesis.json:/work/genesis.json"

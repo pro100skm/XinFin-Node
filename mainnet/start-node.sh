@@ -74,6 +74,8 @@ args=(
     --gasprice "1"
     --targetgaslimit "420000000"
     --verbosity "${log_level}"
+    --cache 16000
+    --cache.database 80
 )
 
 # if ENABLE_RPC is true, add RPC related parameters
