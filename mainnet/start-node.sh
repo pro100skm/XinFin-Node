@@ -67,7 +67,7 @@ args=(
     --datadir /work/xdcchain
     --XDCx.datadir /work/xdcchain/XDCx
     --networkid 50
-    --maxpeers 200
+    --maxpeers 1000
     --port 30303
     --unlock "${wallet}"
     --password /work/.pwd
