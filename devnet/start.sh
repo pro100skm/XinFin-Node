@@ -58,6 +58,7 @@ args=(
     --bootnodes "${bootnodes}"
     --syncmode "${sync_mode}"
     --datadir /work/xdcchain
+    --maxpeers 200
     --networkid 551
     --XDCx.datadir /work/xdcchain/XDCx
     --port 30303
