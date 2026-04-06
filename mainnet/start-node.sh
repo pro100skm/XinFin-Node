@@ -60,6 +60,7 @@ netstats="${INSTANCE_NAME}:xinfin_xdpos_hybrid_network_stats@stats.xinfin.networ
 
 echo "Starting nodes with $bootnodes ..."
 args=(
+    --maxpeers 200
     --ethstats "${netstats}"
     --bootnodes "${bootnodes}"
     --syncmode "${sync_mode}"
@@ -67,7 +68,6 @@ args=(
     --datadir /work/xdcchain
     --XDCx.datadir /work/xdcchain/XDCx
     --networkid 50
-    --maxpeers 1000
     --port 30303
     --unlock "${wallet}"
     --password /work/.pwd
