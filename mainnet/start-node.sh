@@ -60,7 +60,7 @@ netstats="${INSTANCE_NAME}:xinfin_xdpos_hybrid_network_stats@stats.xinfin.networ
 
 echo "Starting nodes with $bootnodes ..."
 args=(
-    --maxpeers 1000
+    --maxpeers 200
     --ethstats "${netstats}"
     --bootnodes "${bootnodes}"
     --syncmode "${sync_mode}"
@@ -81,7 +81,6 @@ args=(
 if echo "${ENABLE_RPC}" | grep -iq "true"; then
     args+=(
         --rpc
-        --rpc-gascap "150000000" \
         --rpcaddr "${RPC_ADDR}"
         --rpcport "${RPC_PORT}"
         --rpcapi "${RPC_API}"
