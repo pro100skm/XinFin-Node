@@ -60,7 +60,7 @@ netstats="${INSTANCE_NAME}:xinfin_xdpos_hybrid_network_stats@stats.xinfin.networ
 
 echo "Starting nodes with $bootnodes ..."
 args=(
-    --maxpeers 200
+    --maxpeers 50
     --ethstats "${netstats}"
     --bootnodes "${bootnodes}"
     --syncmode "${sync_mode}"
