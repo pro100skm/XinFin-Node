@@ -81,6 +81,7 @@ args=(
 if echo "${ENABLE_RPC}" | grep -iq "true"; then
     args+=(
         --rpc
+        --rpc-gascap "150000000"
         --rpcaddr "${RPC_ADDR}"
         --rpcport "${RPC_PORT}"
         --rpcapi "${RPC_API}"

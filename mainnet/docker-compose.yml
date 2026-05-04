@@ -1,12 +1,12 @@
 services:
   xinfinnetwork:
-    cpuset: 0-13
+    cpuset: 0-7
     container_name: xdcnetwork-mainnet-node
     image: xinfinorg/xdposchain:v2.6.8
     deploy:
       resources:
         limits:
-          cpus: '14'
+          cpus: '8'
     volumes:
       - "./xdcchain:/work/xdcchain"
       - "./genesis.json:/work/genesis.json"
