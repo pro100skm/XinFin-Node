@@ -19,4 +19,5 @@ package-lock.json
 generated
 *.env*
 **temp
+.nodekey
 .idea

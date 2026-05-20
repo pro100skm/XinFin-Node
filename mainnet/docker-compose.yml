@@ -2,7 +2,7 @@ services:
   xinfinnetwork:
     cpuset: 0-11
     container_name: xdcnetwork-mainnet-node
-    image: xinfinorg/xdposchain:v2.6.8
+    image: xinfinorg/xdposchain:v2.7.0
     deploy:
       resources:
         limits:
@@ -14,6 +14,7 @@ services:
       - "./bootnodes.list:/work/bootnodes.list"
       - "./.pwd:/work/.pwd"
       - "/etc/localtime:/etc/localtime:ro"
+    pull_policy: always
     restart: "always"
     env_file:
       - .env

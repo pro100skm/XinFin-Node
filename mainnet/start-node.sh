@@ -37,13 +37,15 @@ fi
 DATE="$(date +%Y%m%d-%H%M%S)"
 LOG_FILE="/work/xdcchain/xdc-${DATE}.log"
 
-# Set sync_mode from SYNC_MODE env or default to 'full'
 sync_mode=full
-if test -z "$SYNC_MODE"; then
-    echo "SYNC_MODE not set, default to full" # full or fast
+
+# Set store_reward from STORE_REWARD env or default to 'false'
+store_reward=false
+if test -z "$STORE_REWARD"; then
+    echo "STORE_REWARD not set, default to false"
 else
-    echo "SYNC_MODE found, set to $SYNC_MODE"
-    sync_mode=$SYNC_MODE
+    echo "STORE_REWARD found, set to $STORE_REWARD"
+    store_reward=$STORE_REWARD
 fi
 
 # Set gc_mode from GC_MODE env or default to 'archive'
@@ -60,7 +62,7 @@ netstats="${INSTANCE_NAME}:xinfin_xdpos_hybrid_network_stats@stats.xinfin.networ
 
 echo "Starting nodes with $bootnodes ..."
 args=(
-    --maxpeers 50
+    --maxpeers 100
     --ethstats "${netstats}"
     --bootnodes "${bootnodes}"
     --syncmode "${sync_mode}"
@@ -75,24 +77,43 @@ args=(
     --gasprice "1"
     --targetgaslimit "420000000"
     --verbosity "${log_level}"
+    --store-reward
+    --nat "extip:${INSTANCE_IP}"
 )
 
-# if ENABLE_RPC is true, add RPC related parameters
-if echo "${ENABLE_RPC}" | grep -iq "true"; then
+if [[ "${store_reward}" == "true" ]]; then
+    args+=(--store-reward)
+fi
+
+# RPC and WebSocket configuration - exact match required for security
+if [[ "${ENABLE_RPC}" == "true" ]]; then
     args+=(
-        --rpc
-        --rpc-gascap "150000000"
-        --rpcaddr "${RPC_ADDR}"
-        --rpcport "${RPC_PORT}"
-        --rpcapi "${RPC_API}"
-        --rpccorsdomain "${RPC_CORS_DOMAIN}"
-        --rpcvhosts "${RPC_VHOSTS}"
-        --store-reward
+        --http
+        --http-addr "0.0.0.0"
+        --http-port "${RPC_PORT}"
+        --http-api "${API}"
+        --http-corsdomain "${ALLOWED_ORIGINS}"
+        --http-vhosts "${RPC_VHOSTS}"
+    )
+else
+    # When not "true", explicitly disable RPC to avoid unintended exposure
+    args+=(
+        --http=false
+    )
+fi
+
+if [[ "${ENABLE_WS}" == "true" ]]; then
+    args+=(
         --ws
-        --wsaddr "${WS_ADDR}"
-        --wsport "${WS_PORT}"
-        --wsapi "${WS_API}"
-        --wsorigins "${WS_ORIGINS}"
+        --ws-addr "0.0.0.0"
+        --ws-port "${WS_PORT}"
+        --ws-api "${API}"
+        --ws-origins "${ALLOWED_ORIGINS}"
+    )
+else
+    # When not "true", explicitly disable WebSocket to avoid unintended exposure
+    args+=(
+        --ws=false
     )
 fi
 

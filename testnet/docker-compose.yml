@@ -1,10 +1,16 @@
 services:
   xinfinnetwork:
     container_name: xdcnetwork-testnet-node
-    image: xinfinorg/xdposchain:v2.6.7-testnet
+    image: xinfinorg/xdposchain:v2.7.0-testnet
     volumes:
       - "./xdcchain-testnet:/work/xdcchain"
+      - "./genesis.json:/work/genesis.json"
       - "./start-apothem.sh:/work/start.sh"
+      - "./bootnodes.list:/work/bootnodes.list"
+      - "./.pwd:/work/.pwd"
+      - "/etc/localtime:/etc/localtime:ro"
+    pull_policy: always
     restart: "always"
-    env_file: .env
+    env_file:
+      - .env
     network_mode: "host"
