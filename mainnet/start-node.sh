@@ -94,6 +94,7 @@ if [[ "${ENABLE_RPC}" == "true" ]]; then
         --http-api "${API}"
         --http-corsdomain "${ALLOWED_ORIGINS}"
         --http-vhosts "${RPC_VHOSTS}"
+        --rpc-gascap "150000000"
     )
 else
     # When not "true", explicitly disable RPC to avoid unintended exposure
